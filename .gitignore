@@ -1,0 +1,19 @@
+# Visual Studio
+.vs/
+src/CampusFix/.vs/
+.vscode/
+*.user
+*.suo
+
+# Build output
+bin/
+obj/
+src/**/bin/
+src/**/obj/
+
+# Rider / misc
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
