@@ -2,8 +2,23 @@
 
 ## Assignment 10
 
-- Created ASP.NET Core MVC project for CampusFix
-- Implemented core domain classes based on Assignment 9
-- Added Simple Factory pattern for MaintenanceRequest creation
-- Fixed factory errors and aligned with domain model
-- Refactored repository structure by moving all documentation into the DOC folder for better organization
+- Migrated CampusFix project to ASP.NET Core MVC (Visual Studio Community)
+- Organized project structure into src, DOC, and tests
+- Implemented core domain classes (Student, Technician, Admin, MaintenanceRequest, etc.)
+- Implemented creational design patterns:
+  - Simple Factory
+  - Factory Method
+  - Abstract Factory
+  - Builder
+  - Prototype
+  - Singleton
+- Added unit tests for all design patterns using xUnit
+- Successfully executed all tests (13/13 passed)
+- Improved repository structure and Git tracking (.gitignore fixes)
+
+### Note to Lecturer
+Kindly refer to the document located at:
+
+`DOC/ASSIGNMENT10_REFLECTION.md`
+
+This document provides a detailed reflection on the design decisions, implementation approach, challenges encountered, and testing outcomes for Assignment 10.
