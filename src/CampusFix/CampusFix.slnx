@@ -1,4 +1,6 @@
 <Solution>
+  <Project Path="../CampusFix.Domain/CampusFix.Domain.csproj" Id="328b3174-6d92-4b56-9423-d92707f00ea9" />
+  <Project Path="../CampusFix.Infrastructure/CampusFix.Infrastructure.csproj" Id="346d92b5-0fa1-42d6-8ef5-b16c8b42e1ea" />
   <Project Path="../tests/CampusFix.Tests/CampusFix.Tests.csproj" Id="f885cac8-a8a1-4dff-8aea-b3a152d0bee2" />
   <Project Path="CampusFix.Web/CampusFix.Web.csproj" />
 </Solution>

@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\CampusFix.Domain\CampusFix.Domain.csproj" />
+    <ProjectReference Include="..\..\CampusFix.Infrastructure\CampusFix.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
