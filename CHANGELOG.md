@@ -44,3 +44,23 @@ This document provides a detailed reflection on the design decisions, implementa
 DOC/ASSIGNMENT12_REFLECTION.md`
 
 This document provides a detailed reflection on the design decisions, implementation approach, challenges encountered, and testing outcomes for Assignment 12.
+
+## Assignment 13
+
+- Added GitHub Actions CI/CD workflow for CampusFix.
+- Configured workflow to run on push and pull requests to `main`.
+- Automated dependency restore, build, and unit test execution.
+- Configured release artifact generation for the CampusFix web application.
+- Verified successful GitHub Actions workflow run.
+- Added branch protection rules for the `main` branch.
+- Required pull requests and approvals before merging.
+- Added Assignment 13 documentation:
+  - `DOC/PROTECTION.md`
+  - `DOC/CI_CD_WORKFLOW.md`
+  - `DOC/ASSIGNMENT13_REFLECTION.md`
+
+  - Added Assignment 13 evidence screenshots in the `Assignment13` images folder, including:
+  - Successful GitHub Actions workflow execution
+  - Generated CI/CD release artifact
+  - Branch protection configuration
+  - Pull request workflow validation

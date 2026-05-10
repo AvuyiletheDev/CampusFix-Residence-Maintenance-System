@@ -1,0 +1,13 @@
+# Assignment 13 Reflection: Implementing CI/CD with GitHub Actions
+
+Assignment 13 introduced CI/CD practices into the CampusFix Residence Maintenance System. The main purpose of this assignment was to move the project closer to a professional software engineering workflow by automating testing, building, and release artifact generation through GitHub Actions.
+
+One of the main challenges was configuring the GitHub Actions workflow correctly. The first version of the workflow failed because the solution path was incorrect. GitHub Actions could not find the expected solution file, which showed the importance of understanding the repository structure and using accurate relative paths. After identifying the issue from the workflow logs, the pipeline was updated to restore and build the correct CampusFix Web project and run the correct test project.
+
+This assignment also demonstrated the value of automated testing. Before pushing the workflow to GitHub, the project was tested locally using the terminal. The local test run showed that all tests passed successfully. Once the workflow was corrected, GitHub Actions was able to run the same validation process in the cloud. This gave confidence that the project could build and test successfully outside the local development environment.
+
+Another important part of the assignment was branch protection. The `main` branch was protected so that changes must go through pull requests and pass required checks before merging. This is important because it prevents accidental direct changes to the stable branch. In a real project, this protects the team from introducing unreviewed or broken code into the production-ready version of the application.
+
+The release artifact step was also useful because it showed how a web application can be automatically packaged after a successful build. For CampusFix, the generated artifact represents a deployable version of the web application. This supports the idea of continuous delivery, where working software can be produced consistently after successful validation.
+
+Overall, this assignment helped connect software development with DevOps practices. Earlier assignments focused on requirements, design, domain modelling, repositories, services, and REST APIs. Assignment 13 added automation and governance around that work. The key lesson learned is that a working system is not only about writing code; it is also about protecting quality through automated pipelines, branch rules, testing, and controlled releases.
