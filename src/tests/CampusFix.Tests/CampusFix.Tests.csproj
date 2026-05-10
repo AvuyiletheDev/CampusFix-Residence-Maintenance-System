@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\CampusFix.Domain\CampusFix.Domain.csproj" />
     <ProjectReference Include="..\..\CampusFix.Infrastructure\CampusFix.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\CampusFix\CampusFix.Application\CampusFix.Application.csproj" />
     <ProjectReference Include="..\..\CampusFix\CampusFix.Web\CampusFix.Web.csproj" />
   </ItemGroup>
 

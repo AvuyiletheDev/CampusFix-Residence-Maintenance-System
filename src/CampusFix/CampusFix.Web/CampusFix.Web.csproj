@@ -9,6 +9,11 @@
   <ItemGroup>
     <ProjectReference Include="..\..\CampusFix.Domain\CampusFix.Domain.csproj" />
     <ProjectReference Include="..\..\CampusFix.Infrastructure\CampusFix.Infrastructure.csproj" />
+    <ProjectReference Include="..\CampusFix.Application\CampusFix.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.7" />
   </ItemGroup>
 
 </Project>
