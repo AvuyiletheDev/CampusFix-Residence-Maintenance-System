@@ -64,3 +64,19 @@ This document provides a detailed reflection on the design decisions, implementa
   - Generated CI/CD release artifact
   - Branch protection configuration
   - Pull request workflow validation
+
+
+  ## Assignment 14
+
+- Prepared repository for open-source collaboration and peer review
+- Added CONTRIBUTING.md with onboarding and contribution guidelines
+- Added ROADMAP.md outlining future system enhancements
+- Added MIT LICENSE for repository usage and collaboration
+- Expanded README.md with setup instructions, contribution workflow, and project structure
+- Created contributor-friendly GitHub issues and labels
+- Added good-first-issue and feature-request issue categories
+- Added OPEN_SOURCE_READINESS.md documentation
+- Added VOTING_RESULTS.md for peer engagement tracking
+- Added ASSIGNMENT14_REFLECTION.md discussing collaboration and onboarding lessons
+- Improved repository structure and documentation quality
+- Prepared repository for peer contributions and collaborative development
