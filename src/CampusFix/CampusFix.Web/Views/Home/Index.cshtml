@@ -1,8 +1,248 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+    ViewData["Title"] = "Student Dashboard";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="welcome-splash" aria-hidden="true">
+    <div class="welcome-splash__panel">
+        <span class="welcome-splash__kicker">Welcome to</span>
+        <strong>CampusFix</strong>
+        <span>Residence maintenance made simple</span>
+    </div>
+</div>
+
+<section class="student-dashboard" role="main" aria-labelledby="dashboard-title">
+    <div class="dashboard-header">
+        <div>
+            <p class="dashboard-kicker">Residence maintenance</p>
+            <h1 id="dashboard-title" class="dashboard-title">Student Dashboard</h1>
+            <p class="dashboard-summary">
+                Track maintenance requests, view progress, and submit residence issues from one place.
+            </p>
+        </div>
+        <button class="btn btn-primary dashboard-action" type="button" data-bs-toggle="modal" data-bs-target="#issueModal">Raise Issue</button>
+    </div>
+
+    <h2 class="visually-hidden">Request Summary</h2>
+    <div class="row g-3 dashboard-stat-row">
+        <div class="col-12 col-sm-6 col-lg-3">
+            <article class="card dashboard-card stat-card h-100">
+                <div class="card-body p-3 p-md-4 d-flex flex-column">
+                    <h3 class="stat-label">Open Requests</h3>
+                    <strong id="open-count">4</strong>
+                    <span class="stat-note text-warning mt-auto">2 awaiting assignment</span>
+                </div>
+            </article>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+            <article class="card dashboard-card stat-card h-100">
+                <div class="card-body p-3 p-md-4 d-flex flex-column">
+                    <h3 class="stat-label">In Progress</h3>
+                    <strong id="progress-count">3</strong>
+                    <span class="stat-note text-primary mt-auto">Technician active</span>
+                </div>
+            </article>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+            <article class="card dashboard-card stat-card h-100">
+                <div class="card-body p-3 p-md-4 d-flex flex-column">
+                    <h3 class="stat-label">Resolved</h3>
+                    <strong id="resolved-count">12</strong>
+                    <span class="stat-note text-success mt-auto">This semester</span>
+                </div>
+            </article>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+            <article class="card dashboard-card stat-card h-100">
+                <div class="card-body p-3 p-md-4 d-flex flex-column">
+                    <h3 class="stat-label">Avg. Response</h3>
+                    <strong>1.8d</strong>
+                    <span class="stat-note text-muted mt-auto">Residence team</span>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <div class="row g-4 align-items-stretch">
+        <div class="col-12 col-lg-8">
+            <section class="card dashboard-card h-100" aria-labelledby="recent-requests-title">
+                <div class="card-body p-3 p-md-4 d-flex flex-column">
+                    <div class="section-heading">
+                        <div>
+                            <h2 id="recent-requests-title">Recent Requests</h2>
+                            <p>Latest maintenance activity for your residence.</p>
+                        </div>
+                        <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#issueModal">Add Request</button>
+                    </div>
+
+                    <div class="request-filters" aria-label="Filter recent requests">
+                        <div>
+                            <label class="form-label" for="priority-filter">Priority</label>
+                            <select class="form-select form-select-sm request-filter" id="priority-filter" data-filter="priority">
+                                <option value="all">All priorities</option>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label" for="date-filter">Date</label>
+                            <select class="form-select form-select-sm request-filter" id="date-filter" data-filter="date">
+                                <option value="all">All dates</option>
+                                <option value="today">Today</option>
+                                <option value="yesterday">Yesterday</option>
+                                <option value="older">Older</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label" for="status-filter">Status</label>
+                            <select class="form-select form-select-sm request-filter" id="status-filter" data-filter="status">
+                                <option value="all">All statuses</option>
+                                <option value="Submitted">Submitted</option>
+                                <option value="Assigned">Assigned</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Resolved">Resolved</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label" for="category-filter">Category</label>
+                            <select class="form-select form-select-sm request-filter" id="category-filter" data-filter="category">
+                                <option value="all">All categories</option>
+                                <option value="Plumbing">Plumbing</option>
+                                <option value="Electrical">Electrical</option>
+                                <option value="Furniture">Furniture</option>
+                                <option value="Cleaning">Cleaning</option>
+                                <option value="Facilities">Facilities</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-outline-primary btn-sm" id="clear-request-filters" type="button">Clear</button>
+                    </div>
+
+                    <div class="table-responsive request-table-wrap">
+                        <table class="table align-middle request-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Issue</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Priority</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Updated</th>
+                                </tr>
+                            </thead>
+                            <tbody id="request-table-body">
+                                <tr data-priority="High" data-date="today" data-status="In Progress" data-category="Plumbing">
+                                    <td>
+                                        <span class="request-title text-truncate">Leaking bathroom tap</span>
+                                        <span class="request-location text-truncate">Room B204</span>
+                                    </td>
+                                    <td>Plumbing</td>
+                                    <td><span class="badge text-bg-danger">High</span></td>
+                                    <td><span class="badge text-bg-primary">In Progress</span></td>
+                                    <td>Today</td>
+                                </tr>
+                                <tr data-priority="Medium" data-date="yesterday" data-status="Assigned" data-category="Electrical">
+                                    <td>
+                                        <span class="request-title text-truncate">Faulty corridor light</span>
+                                        <span class="request-location text-truncate">Block C, Floor 2</span>
+                                    </td>
+                                    <td>Electrical</td>
+                                    <td><span class="badge text-bg-warning">Medium</span></td>
+                                    <td><span class="badge text-bg-secondary">Assigned</span></td>
+                                    <td>Yesterday</td>
+                                </tr>
+                                <tr data-priority="Low" data-date="older" data-status="Resolved" data-category="Facilities">
+                                    <td>
+                                        <span class="request-title text-truncate">Broken window latch</span>
+                                        <span class="request-location text-truncate">Room A118</span>
+                                    </td>
+                                    <td>Facilities</td>
+                                    <td><span class="badge text-bg-info">Low</span></td>
+                                    <td><span class="badge text-bg-success">Resolved</span></td>
+                                    <td>May 12</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="request-empty-message d-none" id="request-empty-message">No requests match these filters.</p>
+                </div>
+            </section>
+        </div>
+
+        <div class="col-12 col-lg-4">
+            <section id="new-request" class="card dashboard-card h-100 action-card" aria-labelledby="new-request-title">
+                <div class="card-body p-3 p-md-4 d-flex flex-column">
+                    <div class="section-heading compact">
+                        <div>
+                            <h2 id="new-request-title">Need Maintenance?</h2>
+                            <p>Open the request form and share the issue details.</p>
+                        </div>
+                    </div>
+
+                    <div class="request-form d-flex flex-column flex-grow-1">
+                        <div class="issue-prompt">
+                            <span class="issue-prompt__icon" aria-hidden="true">!</span>
+                            <div>
+                                <h3>Raise an issue</h3>
+                                <p>New requests are added to your dashboard instantly.</p>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary w-100 mt-auto" type="button" data-bs-toggle="modal" data-bs-target="#issueModal">Open Request Form</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="issueModal" tabindex="-1" aria-labelledby="issueModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content issue-modal">
+            <div class="modal-header">
+                <div>
+                    <p class="dashboard-kicker mb-1">New maintenance request</p>
+                    <h2 class="modal-title fs-5" id="issueModalLabel">Raise an Issue</h2>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="issue-form" data-client-form="true">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label" for="issue-title">Issue title</label>
+                        <input class="form-control" id="issue-title" name="title" type="text" placeholder="e.g. Heater not working" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="issue-location">Location</label>
+                        <input class="form-control" id="issue-location" name="location" type="text" placeholder="e.g. Room B204" required />
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-12 col-sm-6">
+                            <label class="form-label" for="category">Category</label>
+                            <select class="form-select" id="category" name="category">
+                                <option>Plumbing</option>
+                                <option>Electrical</option>
+                                <option>Furniture</option>
+                                <option>Cleaning</option>
+                                <option>Facilities</option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <label class="form-label" for="priority">Priority</label>
+                            <select class="form-select" id="priority" name="priority">
+                                <option>Low</option>
+                                <option selected>Medium</option>
+                                <option>High</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <label class="form-label" for="description">Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="4" placeholder="Describe the issue and anything maintenance should know"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" type="submit">Submit Request</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
